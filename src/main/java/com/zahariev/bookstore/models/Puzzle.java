@@ -1,33 +1,16 @@
 package com.zahariev.bookstore.models;
 
-public class Puzzle {
-    private Integer puzzleId;
-    private String title;
+import javax.persistence.*;
+
+@Entity
+@Table(name = "puzzles")
+public class Puzzle extends Product {
     private Integer pieces;
+
+//    private byte[] image;
 
     public Puzzle() {
 
-    }
-
-    public Puzzle(String title, Integer pieces) {
-        this.title = title;
-        this.pieces = pieces;
-    }
-
-    public Integer getPuzzleId() {
-        return puzzleId;
-    }
-
-    public void setPuzzleId(Integer puzzleId) {
-        this.puzzleId = puzzleId;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public Integer getPieces() {

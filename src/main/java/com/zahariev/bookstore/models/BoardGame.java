@@ -1,35 +1,19 @@
 package com.zahariev.bookstore.models;
 
-public class BoardGame {
-    private Integer boardGameId;
-    private String name;
+import javax.persistence.*;
+
+@Entity
+@Table(name = "board_games")
+public class BoardGame extends Product{
     private Integer minimumNumberOfPlayers;
+
     private Integer maximumNumberOfPlayers;
+
+//    @Column(name = "image")
+//    private byte[] image;
 
     public BoardGame() {
 
-    }
-
-    public BoardGame(String name, Integer minimumNumberOfPlayers, Integer maximumNumberOfPlayers) {
-        this.name = name;
-        this.minimumNumberOfPlayers = minimumNumberOfPlayers;
-        this.maximumNumberOfPlayers = maximumNumberOfPlayers;
-    }
-
-    public Integer getBoardGameId() {
-        return boardGameId;
-    }
-
-    public void setBoardGameId(Integer boardGameId) {
-        this.boardGameId = boardGameId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Integer getMinimumNumberOfPlayers() {
