@@ -1,10 +1,10 @@
-package com.zahariev.bookstore.repositories;
+package com.zahariev.bookstore.services;
 
 import com.zahariev.bookstore.models.Book;
 
 import java.util.List;
 
-public interface BookRepository {
+public interface BookService {
     List<Book> getAll();
 
     List<Book> getAllByPartOfTitle(String partOfTitle);

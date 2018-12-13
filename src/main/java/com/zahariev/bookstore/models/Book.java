@@ -13,6 +13,12 @@ public class Book extends Product {
     public Book() {
 
     }
+
+    public Book(String name, Integer stock, Double price, String authorsName) {
+        super(name, stock, price);
+        this.authorsName = authorsName;
+    }
+
     public String getAuthorsName() {
         return authorsName;
     }

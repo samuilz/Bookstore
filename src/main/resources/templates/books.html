@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Books</title>
-    <link rel="stylesheet" href="../static/books.css">
+    <link rel="stylesheet" th:href="@{css/books.css}">
 </head>
 <body>
 <header>
-    <h1>Falcon Bookstore</h1>
+    <h1>Falcon Books</h1>
     <nav>
         <ul>
             <li><a href="books.html">Books</a></li>
@@ -16,5 +16,19 @@
         </ul>
     </nav>
 </header>
+<main>
+    <th:block th:each="book : ${books}">
+        <ul class="booksList">
+            <li th:text="${book.getName()}"></li>
+            <li>
+                <div>
+                    <p>&dollar;</p>
+                    <p th:text="${book.getPrice()}"></p>
+                </div>
+            </li>
+            <li th:text="${book.getAuthorsName()}"></li>
+        </ul>
+    </th:block>
+</main>
 </body>
 </html>

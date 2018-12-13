@@ -48,6 +48,25 @@ header {
     margin: 0 auto;
 }
 
+#author {
+    font-style: italic;
+}
+
+#column {
+    display: flex;
+    flex-direction: column;
+}
+
+#column p {
+    margin-bottom: 0;
+}
+
+header div {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+}
+
 body > p {
     background: dimgray;
     text-align: center;
@@ -73,7 +92,6 @@ main div {
     width: 27%;
     padding: 20px;
     border-radius: 100px;
-    text-align: center;
     color: aliceblue;
 }
 

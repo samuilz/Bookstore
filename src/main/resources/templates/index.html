@@ -1,35 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Bookstore</title>
-    <link rel="stylesheet" href="../static/index.css">
+    <link rel="stylesheet" th:href="@{/css/index.css}" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 </head>
 <body>
 <header>
-    <i class="fas fa-book-open"></i>
-    <h1>Falcon Bookstore</h1>
+    <div>
+        <i class="fas fa-book-open"></i>
+        <h1>Falcon Bookstore</h1>
+    </div>
+    <div id="column">
+        <p>If we encounter a man of rare intellect, we should ask him what books he reads.</p>
+        <p id="author">–Ralph Waldo Emerson</p>
+    </div>
 </header>
 <p>Delivery only for 5.00 BGN and maximum for 48 hours!
 <i class="fas fa-truck"></i>
 </p>
 <main>
     <div>
-        <p>Here you can find your favourite books!</p>
+        <p>You can find your favourite books!</p>
         <!--<p>which you can purchase or you can read online.</p>-->
-        <img src="../images/books.jpeg" width="250px" height="200px">
-        <a href="books.html">Take your book from here!</a>
+        <img src="../static/images/books.jpeg" width="250px" height="200px" th:src="@{images/books.jpeg}"/>
+        <a th:href="@{/books}">Take your book from here!</a>
     </div>
     <div>
         <p>And your favourite board games!</p>
-        <img src="../images/boardgames.jpg" width="250px" height="200px">
-        <a href="boardgames.html">Take your board game from here!</a>
+        <img src="../static/images/boardgames.jpg" width="250px" height="200px" th:src="@{images/boardgames.jpg}">
+        <a th:href="@{/boardgames}">Take your board game from here!</a>
     </div>
     <div>
         <p>And puzzles!</p>
-        <img src="../images/puzzles.jpg" width="250px" height="200px">
-        <a href="puzzles.html">Take your puzzle from here!</a>
+        <img src="../static/images/puzzles.jpg" width="250px" height="200px" th:src="@{images/puzzles.jpg}">
+        <a th:href="@{/puzzles}">Take your puzzle from here!</a>
     </div>
 </main>
 <footer>

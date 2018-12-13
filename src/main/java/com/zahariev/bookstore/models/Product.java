@@ -11,10 +11,16 @@ public class Product {
     private Integer id;
     private String name;
     private Integer stock;
-    private Double prize;
+    private Double price;
 
     public Product() {
 
+    }
+
+    public Product(String name, Integer stock, Double price) {
+        this.name = name;
+        this.stock = stock;
+        this.price = price;
     }
 
     public Integer getId() {
@@ -41,11 +47,11 @@ public class Product {
         this.stock = stock;
     }
 
-    public Double getPrize() {
-        return prize;
+    public Double getPrice() {
+        return price;
     }
 
-    public void setPrize(Double prize) {
-        this.prize = prize;
+    public void setPrice(Double price) {
+        this.price = price;
     }
 }
