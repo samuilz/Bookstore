@@ -15,6 +15,7 @@ body {
 i {
     margin: 30px 15px;
     font-size: 20px;
+    text-align: center;
 }
 
 h1 {
@@ -44,6 +45,7 @@ nav a {
 header {
     display: flex;
     flex-direction: row;
+    margin: 0 auto;
 }
 
 body > p {
@@ -58,12 +60,51 @@ main {
     flex-direction: row;
 }
 
+body > p {
+    margin-top: 0;
+}
+
 main div {
     background-color: indigo;
-    margin-right: 10px;
-    width: 30%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 0 30px;
+    width: 27%;
     padding: 20px;
     border-radius: 100px;
     text-align: center;
     color: aliceblue;
+}
+
+main div img {
+    margin: 0 auto;
+}
+
+main div a {
+    margin-top: 20px;
+    color: aliceblue;
+    text-decoration: none;
+}
+
+footer {
+    background: dimgray;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+footer p {
+    margin: 0 40px;
+    padding: 10px 40px;
+}
+
+#middle {
+    margin: 20px 55px;
+    margin-bottom: 0;
+}
+
+footer p i {
+    margin: 0;
 }
