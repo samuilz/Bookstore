@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Books</title>
-    <link rel="stylesheet" th:href="@{css/books.css}">
+    <script type = "text/javascript"
+            src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/books.css}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+          integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 </head>
 <body>
 <header>
@@ -16,6 +20,16 @@
         </ul>
     </nav>
 </header>
+<div>
+    <form id="form" th:action="@{/books}" onsubmit="return isValid();" method="get">
+        <label for="title">Search by part of title</label>
+        <input type="radio" name="search" id="title"/>
+        <label for="authorsName">Search by author's name</label>
+        <input type="radio" name="search" id="authorsName"/>
+        <input type="text" id="input"/>
+        <input type="submit" id="submit" value="Submit" th:onclick="'javascript:submitForm();'">
+    </form>
+</div>
 <main>
     <th:block th:each="book : ${books}">
         <ul class="booksList">
@@ -30,5 +44,57 @@
         </ul>
     </th:block>
 </main>
+<footer>
+    <div>
+        <p>Find us in: </p>
+        <p><i class="fab fa-facebook-square"></i>
+            Facebook - <a href="https://www.facebook.com/FalconIO/">Falcon.io</a></p>
+        <p><i class="fab fa-linkedin"></i>
+            LinkedIn - <a href="https://www.linkedin.com/company/falconio/">Falcon.io</a></p>
+    </div>
+    <div id="middle">
+        <h1><i class="fas fa-book-open"></i>
+            Falcon Bookstore</h1>
+    </div>
+    <div>
+        <p>Contact us on: </p>
+        <p><i class="fas fa-phone-square"></i>
+            Phone - +359876543432</p>
+        <p><i class="fas fa-envelope-square"></i>
+            Email - falcon_bookstore@gmail.com</p>
+    </div>
+</footer>
+<script th:inline="javascript">
+    function submitForm() {
+        let value = null;
+        let inputValue = $('#input').val();
+        if($('#title').is(':checked')) {
+            value = 'title/' + inputValue;
+        } else if ($('#authorsName').is(':checked')) {
+            value = 'author/' + inputValue;
+        }
+
+        let action =  /*[[@{/books/}]]*/ '';
+        $('#form').attr('action', action + value);
+    }
+    
+    function isValid() {
+        if(isChecked() && isInputNotEmpty()) {
+            return true;
+        } else {
+            alert('Please choose criteria and fill input field!');
+            return false;
+        }
+    }
+
+    function isChecked() {
+        return $('#title').is(':checked') || $('#authorsName').is(':checked');
+    }
+
+    function isInputNotEmpty() {
+        let inputText =  $('#title').text;
+        return inputText !== "" && inputText !== null && inputText !== undefined;
+    }
+</script>
 </body>
 </html>

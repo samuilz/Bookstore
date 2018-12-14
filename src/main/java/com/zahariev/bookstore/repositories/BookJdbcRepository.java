@@ -37,15 +37,19 @@ public class BookJdbcRepository implements BookRepository {
 
     @Override
     public List<Book> getAllByPartOfTitle(String partOfName) {
-        String query = "SELECT * FROM books WHERE LOCATE('am', `name`) > 0;";
+        String query = "SELECT * FROM books WHERE LOCATE(?, `name`) > 0;";
         List<Book> books = new ArrayList<>();
 
         try (
                 Connection connection = connectionHelper.getConnection();
-                Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery(query);
+                PreparedStatement statement = connection.prepareStatement(query);
         ) {
-            books = readData(resultSet);
+            statement.setString(1, partOfName);
+            try(
+                    ResultSet resultSet = statement.executeQuery();
+            ) {
+                books = readData(resultSet);
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
