@@ -36,30 +36,38 @@ public class PuzzleJdbcRepository implements PuzzleRepository {
     }
 
     @Override
-    public List<Puzzle> getAllByNumberOfPiecesAndPartOfTitle(Integer numberOfPieces, String partOfTitle) {
-        String statement;
+    public List<Puzzle> getAllByNumberOfPiecesAndPartOfTitle(String pieces, String partOfTitle) {
+        String query;
 
-        if (numberOfPieces < 1000) {
-            statement = "< 1000";
-        } else if (numberOfPieces == 1000) {
-            statement = "= 1000";
-        } else if (numberOfPieces == 2000) {
-            statement = "= 2000";
-        } else if (numberOfPieces == 3000) {
-            statement = "= 3000";
-        } else {
-            statement = "> 3000";
+        switch (pieces) {
+            case "less":
+                query = "SELECT * FROM puzzles WHERE pieces < 1000 AND LOCATE(?, name) > 0;";
+                break;
+            case "onethousand":
+                query = "SELECT * FROM puzzles WHERE pieces = 1000 AND LOCATE(?, name) > 0;";
+                break;
+            case "twothousands":
+                query = "SELECT * FROM puzzles WHERE pieces = 2000 AND LOCATE(?, name) > 0;";
+                break;
+            case "threethousands":
+                query = "SELECT * FROM puzzles WHERE pieces < 3000 AND LOCATE(?, name) > 0;";
+                break;
+            case "more":
+                query = "SELECT * FROM puzzles WHERE pieces > 3000 AND LOCATE(?, name) > 0;";
+                break;
+            default:
+                query = "SELECT * FROM puzzles WHERE LOCATE(?, name) > 0;";
+                break;
+
         }
 
-        String query = "SELECT * FROM puzzles WHERE pieces ? AND LOCATE(?, name) > 0;";
         List<Puzzle> puzzles = new ArrayList<>();
 
         try (
                 Connection connection = connectionHelper.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
         ) {
-            preparedStatement.setString(1, statement);
-            preparedStatement.setString(2, partOfTitle);
+            preparedStatement.setString(1, partOfTitle);
             try(
                     ResultSet resultSet = preparedStatement.executeQuery();
             ) {
@@ -80,11 +88,12 @@ public class PuzzleJdbcRepository implements PuzzleRepository {
     private List<Puzzle> readData(ResultSet puzzlesData) throws SQLException {
         List<Puzzle> puzzles = new ArrayList<>();
         while (puzzlesData.next()) {
+            Integer id = puzzlesData.getInt("id");
             String name = puzzlesData.getString("name");
             Integer stock = puzzlesData.getInt("stock");
             Double price = puzzlesData.getDouble("prize");
             Integer pieces = puzzlesData.getInt("pieces");
-            Puzzle puzzle = new Puzzle(name, stock, price, pieces);
+            Puzzle puzzle = new Puzzle(id, name, stock, price, pieces);
 
             puzzles.add(puzzle);
         }

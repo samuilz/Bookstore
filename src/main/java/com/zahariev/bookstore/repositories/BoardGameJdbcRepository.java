@@ -89,12 +89,13 @@ public class BoardGameJdbcRepository implements BoardGameRepository {
     private List<BoardGame> readData(ResultSet boardGameData) throws SQLException {
         List<BoardGame> boardGames = new ArrayList<>();
         while (boardGameData.next()) {
+            Integer id = boardGameData.getInt("id");
             String name = boardGameData.getString("name");
             Integer stock = boardGameData.getInt("stock");
             Double price = boardGameData.getDouble("prize");
             Integer minimumPlayers = boardGameData.getInt("minimum_number_of_players");
             Integer maximumPlayers = boardGameData.getInt("maximum_number_of_players");
-            BoardGame boardGame = new BoardGame(name, stock, price, minimumPlayers, maximumPlayers);
+            BoardGame boardGame = new BoardGame(id, name, stock, price, minimumPlayers, maximumPlayers);
 
             boardGames.add(boardGame);
         }

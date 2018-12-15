@@ -87,11 +87,12 @@ public class BookJdbcRepository implements BookRepository {
     private List<Book> readData(ResultSet booksData) throws SQLException {
         List<Book> books = new ArrayList<>();
         while (booksData.next()) {
+            Integer id = booksData.getInt("id");
             String name = booksData.getString("name");
             Integer stock = booksData.getInt("stock");
             Double price = booksData.getDouble("prize");
             String authorsName = booksData.getString("authors_name");
-            Book book = new Book(name, stock, price, authorsName);
+            Book book = new Book(id, name, stock, price, authorsName);
 
             books.add(book);
         }

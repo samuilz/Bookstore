@@ -13,8 +13,8 @@ public class Puzzle extends Product {
 
     }
 
-    public Puzzle(String name, Integer stock, Double price, Integer pieces) {
-        super(name, stock, price);
+    public Puzzle(Integer id,String name, Integer stock, Double price, Integer pieces) {
+        super(id, name, stock, price);
         this.pieces = pieces;
     }
 

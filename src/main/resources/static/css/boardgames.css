@@ -44,13 +44,12 @@ main li div {
 main {
     display: flex;
     flex-wrap: wrap;
-    overflow: auto;
 }
 
 main ul {
     flex: 0 0 28%;
     margin: 18px 20px;
-    height: 131px;
+    height: 100px;
     background-color: indigo;
     padding: 15px;
     text-align: center;
@@ -59,11 +58,6 @@ main ul {
 main ul li div {
     text-align: center;
     margin-left: 156px;
-    color: aliceblue;
-}
-
-main ul li div p {
-    margin: 0;
 }
 
 /*main {*/
@@ -76,11 +70,6 @@ main ul li {
     color: aliceblue;
     text-decoration: none;
     list-style: none;
-    margin-bottom: 10px;
-}
-
-#bottom {
-    margin-left: 140px;
 }
 
 body > div {
@@ -120,17 +109,3 @@ div form input {
     padding: 2px 15px;
     color: aliceblue;
 }
-
-main {
-    overflow: auto;
-}
-
-div > a {
-    color: aliceblue;
-    background-color: dimgray;
-    height: 21px;
-    text-decoration: none;
-    border-radius: 10px;
-    padding: 0 10px;
-}
-

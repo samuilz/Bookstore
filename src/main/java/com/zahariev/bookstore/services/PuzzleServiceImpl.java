@@ -22,8 +22,8 @@ public class PuzzleServiceImpl implements PuzzleService {
     }
 
     @Override
-    public List<Puzzle> getAllByNumberOfPiecesAndPartOfTitle(Integer numberOfPieces, String partOfTitle) {
-        return puzzleRepository.getAllByNumberOfPiecesAndPartOfTitle(numberOfPieces, partOfTitle);
+    public List<Puzzle> getAllByNumberOfPiecesAndPartOfTitle(String pieces, String partOfTitle) {
+        return puzzleRepository.getAllByNumberOfPiecesAndPartOfTitle(pieces, partOfTitle);
     }
 
     @Override

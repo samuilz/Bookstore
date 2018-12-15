@@ -16,8 +16,9 @@ public class BoardGame extends Product{
 
     }
 
-    public BoardGame(String name, Integer stock, Double price, Integer minimumNumberOfPlayers, Integer maximumNumberOfPlayers) {
-        super(name, stock, price);
+    public BoardGame(Integer id, String name, Integer stock, Double price,
+                     Integer minimumNumberOfPlayers, Integer maximumNumberOfPlayers) {
+        super(id, name, stock, price);
         this.minimumNumberOfPlayers = minimumNumberOfPlayers;
         this.maximumNumberOfPlayers = maximumNumberOfPlayers;
     }

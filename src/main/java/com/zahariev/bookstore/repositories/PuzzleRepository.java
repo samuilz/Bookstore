@@ -7,7 +7,7 @@ import java.util.List;
 public interface PuzzleRepository {
     List<Puzzle> getAll();
 
-    List<Puzzle> getAllByNumberOfPiecesAndPartOfTitle(Integer numberOfPieces, String partOfTitle);
+    List<Puzzle> getAllByNumberOfPiecesAndPartOfTitle(String pieces, String partOfTitle);
 
     Puzzle purchasePuzzle(Puzzle puzzle);
 }

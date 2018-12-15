@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Books</title>
-    <script type = "text/javascript"
-            src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link rel="stylesheet" th:href="@{/css/books.css}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
           integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
@@ -14,9 +14,10 @@
     <h1>Falcon Books</h1>
     <nav>
         <ul>
-            <li><a href="books.html">Books</a></li>
-            <li><a href="boardgames.html">Board games</a></li>
-            <li><a href="puzzles.html">Puzzles</a></li>
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/books}">Books</a></li>
+            <li><a th:href="@{/boardgames}">Board games</a></li>
+            <li><a th:href="@{/puzzles}">Puzzles</a></li>
         </ul>
     </nav>
 </header>
@@ -33,6 +34,7 @@
 <main>
     <th:block th:each="book : ${books}">
         <ul class="booksList">
+            <li th:text="${book.getId()}"></li>
             <li th:text="${book.getName()}"></li>
             <li>
                 <div>
@@ -41,6 +43,11 @@
                 </div>
             </li>
             <li th:text="${book.getAuthorsName()}"></li>
+            <li>
+                <div id="bottom">
+                    <a th:href="@{books/purchase/{id}(id=${book.getId()})}">Purchase</a>
+                </div>
+            </li>
         </ul>
     </th:block>
 </main>
@@ -68,18 +75,18 @@
     function submitForm() {
         let value = null;
         let inputValue = $('#input').val();
-        if($('#title').is(':checked')) {
+        if ($('#title').is(':checked')) {
             value = 'title/' + inputValue;
         } else if ($('#authorsName').is(':checked')) {
             value = 'author/' + inputValue;
         }
 
-        let action =  /*[[@{/books/}]]*/ '';
+        let action = /*[[@{/books/}]]*/ '';
         $('#form').attr('action', action + value);
     }
-    
+
     function isValid() {
-        if(isChecked() && isInputNotEmpty()) {
+        if (isChecked() && isInputNotEmpty()) {
             return true;
         } else {
             alert('Please choose criteria and fill input field!');
@@ -92,7 +99,7 @@
     }
 
     function isInputNotEmpty() {
-        let inputText =  $('#title').text;
+        let inputText = $('#input').val();
         return inputText !== "" && inputText !== null && inputText !== undefined;
     }
 </script>
