@@ -22,12 +22,17 @@ public class PuzzleServiceImpl implements PuzzleService {
     }
 
     @Override
+    public Puzzle getById(Integer id) {
+        return puzzleRepository.getById(id);
+    }
+
+    @Override
     public List<Puzzle> getAllByNumberOfPiecesAndPartOfTitle(String pieces, String partOfTitle) {
         return puzzleRepository.getAllByNumberOfPiecesAndPartOfTitle(pieces, partOfTitle);
     }
 
     @Override
-    public Puzzle purchasePuzzle(Puzzle puzzle) {
-        return puzzleRepository.purchasePuzzle(puzzle);
+    public Puzzle update(Puzzle puzzle) {
+        return puzzleRepository.update(puzzle);
     }
 }

@@ -2,13 +2,16 @@ package com.zahariev.bookstore.models;
 
 import javax.persistence.*;
 
-//@Entity
-//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@MappedSuperclass
+@Entity
+@Table(name = "products")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="product_type",
+        discriminatorType = DiscriminatorType.STRING)
+//@MappedSuperclass
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    private Integer productId;
     private String name;
     private Integer stock;
     private Double price;
@@ -18,18 +21,10 @@ public class Product {
     }
 
     public Product(Integer id, String name, Integer stock, Double price) {
-        this.id = id;
+        this.productId = id;
         this.name = name;
         this.stock = stock;
         this.price = price;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -54,5 +49,13 @@ public class Product {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Integer getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 }

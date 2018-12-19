@@ -22,6 +22,11 @@ public class BoardGameServiceImpl implements BoardGameService {
     }
 
     @Override
+    public BoardGame getById(Integer id) {
+        return boardGameRepository.getById(id);
+    }
+
+    @Override
     public List<BoardGame> getAllByPartOfName(String partOfName) {
         return boardGameRepository.getAllByPartOfName(partOfName);
     }
@@ -32,7 +37,7 @@ public class BoardGameServiceImpl implements BoardGameService {
     }
 
     @Override
-    public BoardGame purchaseBoardGame(BoardGame boardGame) {
-        return boardGameRepository.purchaseBoardGame(boardGame);
+    public BoardGame update(BoardGame boardGame) {
+        return boardGameRepository.update(boardGame);
     }
 }

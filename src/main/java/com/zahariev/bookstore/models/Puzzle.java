@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "puzzles")
+@DiscriminatorValue("Puzzle")
 public class Puzzle extends Product {
     private Integer pieces;
 

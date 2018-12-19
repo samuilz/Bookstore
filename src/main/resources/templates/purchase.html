@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Purchase</title>
+    <link rel="stylesheet" th:href="@{/css/purchase.css}">
+</head>
+<body>
+<main>
+    <div th:if="${product.getStock() > 0}">
+        <p>Fill below fields to finish the purchase</p>
+        <div th:if="${product.class.name == 'com.zahariev.bookstore.models.Book'}">
+            <form class="form" th:action="@{/books/order/book/{id}(id=${product.getProductId()})}"
+                  onsubmit="return isValid();" method="post">
+                <label for="pbFirstName">First name</label>
+                <input type="text" id="pbFirstName" th:values="${firstName}" name="firstName">
+                <label for="pbLastName">Last name</label>
+                <input type="text" id="pbLastName" th:values="${lastName}" name="lastName">
+                <label for="pbPhoneNumber">Phone number</label>
+                <input type="number" id="pbPhoneNumber" th:values="${phoneNumber}" name="phoneNumber">
+                <label for="pbAddress">Address</label>
+                <input type="text" id="pbAddress" th:values="${address}" name="address">
+                <input type="submit" id="pbSubmit" value="Submit">
+            </form>
+        </div>
+        <div th:if="${product.class.name == 'com.zahariev.bookstore.models.BoardGame'}">
+            <form class="form" th:action="@{/boardgames/purchase/game/{id}(id=${product.getProductId()})}"
+                  onsubmit="return isValid();" method="post">
+                <label for="pgFirstName">First name</label>
+                <input type="text" id="pgFirstName" th:values="${firstName}" name="firstName">
+                <label for="pgLastName">Last name</label>
+                <input type="text" id="pgLastName" th:values="${lastName}" name="lastName">
+                <label for="pgPhoneNumber">Phone number</label>
+                <input type="number" id="pgPhoneNumber" th:values="${phoneNumber}" name="phoneNumber">
+                <label for="pgAddress">Address</label>
+                <input type="text" id="pgAddress" th:values="${address}" name="address">
+                <input type="submit" id="pgSubmit" value="Submit">
+            </form>
+        </div>
+        <div th:if="${product.class.name == 'com.zahariev.bookstore.models.Puzzle'}">
+            <form class="form" th:action="@{/puzzles/purchase/puzzle/{id}(id=${product.getProductId()})}"
+                  onsubmit="return isValid();" method="post">
+                <label for="ppFirstName">First name</label>
+                <input type="text" id="ppFirstName" th:values="${firstName}" name="firstName">
+                <label for="ppLastName">Last name</label>
+                <input type="text" id="ppLastName" th:values="${lastName}" name="lastName">
+                <label for="ppPhoneNumber">Phone number</label>
+                <input type="number" id="ppPhoneNumber" th:values="${phoneNumber}" name="phoneNumber">
+                <label for="ppAddress">Address</label>
+                <input type="text" id="ppAddress" th:values="${address}" name="address">
+                <input type="submit" id="ppSubmit" value="Submit">
+            </form>
+        </div>
+    </div>
+
+
+    <div th:unless="${product.getStock() > 0}">
+        <p>Fill below fields to finish the order</p>
+        <div th:if="${product.class.name == 'com.zahariev.bookstore.models.Book'}">
+            <form class="form" th:action="@{/books/order/book/{id}(id=${product.getProductId()})}"
+                  onsubmit="return isValid();" method="post">
+                <label for="obFirstName">First name</label>
+                <input type="text" id="obFirstName" th:values="${firstName}" name="firstName">
+                <label for="obLastName">Last name</label>
+                <input type="text" id="obLastName" th:values="${lastName}" name="lastName">
+                <label for="obPhoneNumber">Phone number</label>
+                <input type="number" id="obPhoneNumber" th:values="${phoneNumber}" name="phoneNumber">
+                <label for="obAddress">Address</label>
+                <input type="text" id="obAddress" th:values="${address}" name="address">
+                <input type="submit" id="obSubmit" value="Submit">
+            </form>
+        </div>
+        <div th:if="${product.class.name == 'com.zahariev.bookstore.models.BoardGame'}">
+            <form class="form" th:action="@{/boardgames/order/game/{id}(id=${product.getProductId()})}"
+                  onsubmit="return isValid();" method="post">
+                <label for="ogFirstName">First name</label>
+                <input type="text" id="ogFirstName" th:values="${firstName}" name="firstName">
+                <label for="ogLastName">Last name</label>
+                <input type="text" id="ogLastName" th:values="${lastName}" name="lastName">
+                <label for="ogPhoneNumber">Phone number</label>
+                <input type="number" id="ogPhoneNumber" th:values="${phoneNumber}" name="phoneNumber">
+                <label for="ogAddress">Address</label>
+                <input type="text" id="ogAddress" th:values="${address}" name="address">
+                <input type="submit" id="ogSubmit" value="Submit">
+            </form>
+        </div>
+        <div th:if="${product.class.name == 'com.zahariev.bookstore.models.Puzzle'}">
+            <form class="form" th:action="@{/puzzles/order/puzzle/{id}(id=${product.getProductId()})}"
+                  onsubmit="return isValid();" method="post">
+                <label for="opFirstName">First name</label>
+                <input type="text" id="opFirstName" th:values="${firstName}" name="firstName">
+                <label for="opLastName">Last name</label>
+                <input type="text" id="opLastName" th:values="${lastName}" name="lastName">
+                <label for="opPhoneNumber">Phone number</label>
+                <input type="number" id="opPhoneNumber" th:values="${phoneNumber}" name="phoneNumber">
+                <label for="opAddress">Address</label>
+                <input type="text" id="opAddress" th:values="${address}" name="address">
+                <input type="submit" id="opSubmit" value="Submit">
+            </form>
+        </div>
+    </div>
+</main>
+<script th:inline="javascript">
+    function isValid() {
+        let firstNameValue = $('#firstName').val();
+        let lastNameValue = $('#lastName').val();
+        let phoneNumberValue = $('#phoneNumber').val();
+        let address = $('#address').val();
+
+        if (isInputNotEmpty(firstNameValue) && isInputNotEmpty(lastNameValue)
+            && isInputNotEmpty(phoneNumberValue) && isInputNotEmpty(address)) {
+            console.log('true');
+            return true;
+        } else {
+            alert('Please fill all input fields!');
+            console.log('false');
+            return false;
+        }
+    }
+
+    function isInputNotEmpty(inputValue) {
+        return inputValue !== null && inputValue !== "" && inputValue !== undefined;
+    }
+</script>
+</body>
+</html>

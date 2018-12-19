@@ -8,13 +8,26 @@ public class Request {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String clientName;
-    private Integer clientPhoneNumber;
-    private String productType;
-    private String productInfo;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @Enumerated(value = EnumType.STRING)
+    private RequestType requestType;
 
     public Request() {
 
+    }
+
+    public Request(Product product, User user, RequestType existent) {
+        this.product = product;
+        this.user = user;
+        this.requestType = existent;
     }
 
     public Integer getId() {
@@ -25,35 +38,27 @@ public class Request {
         this.id = id;
     }
 
-    public String getClientName() {
-        return clientName;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-    public String getProductType() {
-        return productType;
+    public User getUser() {
+        return user;
     }
 
-    public void setProductType(String productType) {
-        this.productType = productType;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public String getProductInfo() {
-        return productInfo;
+    public RequestType getRequestType() {
+        return requestType;
     }
 
-    public void setProductInfo(String productInfo) {
-        this.productInfo = productInfo;
-    }
-
-    public Integer getClientPhoneNumber() {
-        return clientPhoneNumber;
-    }
-
-    public void setClientPhoneNumber(Integer clientPhoneNumber) {
-        this.clientPhoneNumber = clientPhoneNumber;
+    public void setRequestType(RequestType requestType) {
+        this.requestType = requestType;
     }
 }

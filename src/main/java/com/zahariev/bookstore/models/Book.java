@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "books")
+@DiscriminatorValue("Book")
 public class Book extends Product {
     private String authorsName;
 
@@ -15,7 +16,7 @@ public class Book extends Product {
     }
 
     public Book(Integer id, String name, Integer stock, Double price, String authorsName) {
-        super(id, name, stock, price);
+            super(id, name, stock, price);
         this.authorsName = authorsName;
     }
 

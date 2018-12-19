@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Requests</title>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/books.css}">
+</head>
+<body>
+<header>
+    <h1>Falcon Books</h1>
+    <nav>
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/books}">Books</a></li>
+            <li><a th:href="@{/boardgames}">Board games</a></li>
+            <li><a th:href="@{/puzzles}">Puzzles</a></li>
+            <li><a th:href="@{/requests}">Requests</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <th:block th:each="request : ${requests}">
+        <ul class="requestList">
+            <li th:text="${request.getId()}"></li>
+            <li th:text="${request.getProduct().getName()}"></li>
+            <li th:text="${request.getProduct().getPrice()}"></li>
+            <li>
+                <a th:href="@{/requests/delete/{id}(id=${request.getId()})}">Delete</a>
+            </li>
+        </ul>
+    </th:block>
+</main>
+</body>
+</html>

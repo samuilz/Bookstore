@@ -18,6 +18,7 @@
             <li><a th:href="@{/books}">Books</a></li>
             <li><a th:href="@{/boardgames}">Board games</a></li>
             <li><a th:href="@{/puzzles}">Puzzles</a></li>
+            <li><a th:href="@{/requests}">Requests</a></li>
         </ul>
     </nav>
 </header>
@@ -34,7 +35,7 @@
 <main>
     <th:block th:each="book : ${books}">
         <ul class="booksList">
-            <li th:text="${book.getId()}"></li>
+            <li th:text="${book.getProductId()}"></li>
             <li th:text="${book.getName()}"></li>
             <li>
                 <div>
@@ -44,11 +45,15 @@
             </li>
             <li th:text="${book.getAuthorsName()}"></li>
             <li>
-                <div id="bottom">
-                    <a th:href="@{books/purchase/{id}(id=${book.getId()})}">Purchase</a>
+                <div class="bottom" th:if="${book.getStock() > 0}">
+                    <a th:href="@{/books/purchase/{id}(id=${book.getProductId()})}">Purchase</a>
+                </div>
+                <div class="bottom" th:unless="${book.getStock() > 0}">
+                    <a th:href="@{/books/order/{id}(id=${book.getProductId()})}">Order</a>
                 </div>
             </li>
         </ul>
+        <div id="negative" class="hidden"></div>
     </th:block>
 </main>
 <footer>

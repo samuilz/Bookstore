@@ -22,6 +22,11 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public Book getById(Integer id) {
+        return bookRepository.getById(id);
+    }
+
+    @Override
     public List<Book> getAllByPartOfTitle(String partOfTitle) {
         return bookRepository.getAllByPartOfTitle(partOfTitle);
     }
@@ -32,7 +37,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book purchaseBook(Book book) {
-        return bookRepository.purchaseBook(book);
+    public Book update(Book book) {
+        return bookRepository.update(book);
     }
 }

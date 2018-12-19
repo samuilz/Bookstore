@@ -18,6 +18,7 @@
         <li><a th:href="@{/books}">Books</a></li>
         <li><a th:href="@{/boardgames}">Board games</a></li>
         <li><a th:href="@{/puzzles}">Puzzles</a></li>
+        <li><a th:href="@{/requests}">Requests</a></li>
     </ul>
 </nav>
 </header>
@@ -34,7 +35,7 @@
 <main>
     <th:block th:each="boardGame : ${boardGames}">
         <ul>
-            <li th:text="${boardGame.getId()}"></li>
+            <li th:text="${boardGame.getProductId()}"></li>
             <li th:text="${boardGame.getName()}"></li>
             <li>
                 <div>
@@ -52,7 +53,7 @@
             </li>
             <li>
             <div id="bottom">
-                <a th:href="@{boardgames/purchase/{id}(id=${boardGame.getId()})}">Purchase</a>
+                <a th:href="@{boardgames/purchase/{id}(id=${boardGame.getProductId()})}">Purchase</a>
             </div>
             </li>
         </ul>

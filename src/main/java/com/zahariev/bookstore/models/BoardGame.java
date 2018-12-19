@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "board_games")
+@DiscriminatorValue("BoardGame")
 public class BoardGame extends Product{
     private Integer minimumNumberOfPlayers;
 

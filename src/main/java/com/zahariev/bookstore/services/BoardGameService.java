@@ -7,9 +7,11 @@ import java.util.List;
 public interface BoardGameService {
     List<BoardGame> getAll();
 
+    BoardGame getById(Integer id);
+
     List<BoardGame> getAllByPartOfName(String partOfName);
 
     List<BoardGame> getAllByNumberOfPlayers(Integer numberOfPlayers);
 
-    BoardGame purchaseBoardGame(BoardGame boardGame);
+    BoardGame update(BoardGame boardGame);
 }
